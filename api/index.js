@@ -1,9 +1,9 @@
-// server.js
 import express from 'express';
-import puppeteer from 'puppeteer';
+import { fetchRatingData } from './datacall.js';
 
 const app = express();
 
+// Serve all static files from the current directory (so index.html, index.js, etc.)
 app.use(express.static('./'));
 
 // This is the new endpoint to handle rating data requests
@@ -27,57 +27,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log('Server is running on port 3000');
 });
-
-
-async function fetchRatingData(user1, user2) {
-  try {
-    const browser = await puppeteer.launch({ headless: 'new' });
-    const page = await browser.newPage();
-
-    await page.goto(`https://atcoder.jp/users/${user1}?graph=rating`, {
-      waitUntil: 'networkidle0'
-    });
-
-    const rating_history1 = await page.evaluate(() => {
-      const xpath = '//*[@id="main-container"]/div[1]/div[3]/div/script[2]/text()';
-      const result = document.evaluate(xpath, document, null, XPathResult.STRING_TYPE, null);
-      if (!result) return null;
-
-      const content = result.stringValue;
-      const match = content.match(/rating_history\s*=\s*(\[.*?\]);/s);
-      if (match) {
-        return JSON.parse(match[1]);
-      }
-      return null;
-    });
-
-    await page.goto(`https://atcoder.jp/users/${user2}?graph=rating`, {
-      waitUntil: 'networkidle0'
-    });
-
-    const rating_history2 = await page.evaluate(() => {
-      const xpath = '//*[@id="main-container"]/div[1]/div[3]/div/script[2]/text()';
-      const result = document.evaluate(xpath, document, null, XPathResult.STRING_TYPE, null);
-      if (!result) return null;
-
-      const content = result.stringValue;
-      const match = content.match(/rating_history\s*=\s*(\[.*?\]);/s);
-      if (match) {
-        return JSON.parse(match[1]);
-      }
-      return null;
-    });
-
-    await browser.close();
-
-    // Important: return the scraped data
-    return {
-      rating_history1: rating_history1 || [],
-      rating_history2: rating_history2 || []
-    };
-  } catch (error) {
-    console.error('An error occurred:', error);
-    // Return empty arrays on error
-    return { rating_history1: [], rating_history2: [] };
-  }
-}
