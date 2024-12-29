@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const user1 = document.getElementById('user1').value;
       const user2 = document.getElementById('user2').value;
   
-      // fetch url 
-      const resp = await fetch(`https://atcoderratinggraphcomparer.onrender.com/rating-data?user1=${user1}&user2=${user2}`);
+      // 2) Call the Node endpoint to get the rating data
+      const resp = await fetch(`/rating-data?user1=${user1}&user2=${user2}`);
       const { rating_history1, rating_history2 } = await resp.json();
       console.log(rating_history1);
       console.log(rating_history2);
