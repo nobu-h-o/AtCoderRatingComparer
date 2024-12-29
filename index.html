@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <div class="text-center mt-5 mb-5">
+        <h1>AtCoder Rating Graph Comparer</h1>
+        <label>User1:</label>
+        <input type="text" id="user1" name="fname" value="Tourist">
+        <label>User2:</label>
+        <input type="text" id="user2" name="lname" value="Chokudai">
+        <button>Submit</button>
+    </div>
+    <div class="d-flex flex-column align-items-center" style="line-height: 0;">
+        <script src="//code.createjs.com/easeljs-0.8.2.min.js"></script>
+        <link href="//fonts.googleapis.com/css?family=Squada+One" rel="stylesheet" type="text/css">
+        <canvas id="ratingStatus" width="640" height="80" style="max-width: 640px; max-height: 80px; height: 100%; width: 100%;"></canvas><br>
+        <canvas id="ratingGraph" width="640" height="360" style="max-width: 640px; max-height: 360px; height: 100%; width: 100%;"></canvas>
+        <a id="rating-graph-expand" class="btn btn-link btn-xs visible-lg-inline"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span></a><br>
+    </div> 
+</body>
+<script type="module" src="index.js"></script>
+</html>
