@@ -1,6 +1,5 @@
 // datacall.js
 import puppeteer from 'puppeteer';
-require('dotenv').config();
 
 export async function fetchRatingData(user1, user2) {
   try {
