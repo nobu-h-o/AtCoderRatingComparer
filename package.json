@@ -1,10 +1,10 @@
 {
   "name": "atcodergraphs",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -12,12 +12,7 @@
   "type": "module",
   "description": "",
   "dependencies": {
-    "@sparticuz/chromium": "^131.0.1",
-    "chrome-launcher": "^1.1.2",
-    "chrome-remote-interface": "^0.33.2",
     "express": "^4.21.2",
-    "nodemon": "^3.1.9",
-    "puppeteer": "^23.11.1",
-    "puppeteer-core": "^23.11.1"
+    "puppeteer": "^23.11.1"
   }
 }
