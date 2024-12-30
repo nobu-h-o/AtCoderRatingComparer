@@ -79,15 +79,14 @@ export function init(data1, data2) {
     n1 = rating_history1.length;
     n2 = rating_history2.length;
 
-    // If you have no data at all, just exit:
     if (n1 === 0 && n2 === 0)
         return;
     stage_graph = new cj.Stage("ratingGraph");
     stage_status = new cj.Stage("ratingStatus");
     initStage(stage_graph, canvas_graph);
     initStage(stage_status, canvas_status);
-    // Figure out the global x_min, x_max, y_min, y_max
-    // based on both rating_history1 and rating_history2
+
+
     x_min = Infinity;
     x_max = -Infinity;
     y_min = Infinity;
@@ -270,7 +269,6 @@ function initChart() {
     // Create vertices for dataset 2
     for (var i = 0; i < n2; i++) {
         vertex_shapes2.push(newShape(chart_container));
-        // We'll give them a slight different "stroke" color to differentiate
         vertex_shapes2[i].graphics.s("#FFF");
         if (i == highest_i2)
             vertex_shapes2[i].graphics.s("#000");
@@ -364,8 +362,8 @@ function initStatus() {
         particles.push(newText(stage_status, 0, 0, "64px Lato"));
         particles[i].visible = false;
     }
-    // By default, let's set the status to the last entry of dataset1 if it exists,
-    // or dataset2 if dataset1 is empty.
+
+    
     if (rating_history1.length > 0) {
         setStatus(rating_history1[rating_history1.length - 1], false);
     }
@@ -460,9 +458,3 @@ function updateParticles() {
         }
     }
 }
-// Optional: expand button logic
-$('#rating-graph-expand').click(function () {
-    canvas_status.style.maxWidth = canvas_status.style.maxHeight = "";
-    canvas_graph.style.maxWidth = canvas_graph.style.maxHeight = "";
-    $(this).css('cssText', 'display: none !important;');
-});
