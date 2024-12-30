@@ -1,9 +1,10 @@
 // datacall.js
 import puppeteer from 'puppeteer';
+import chromium from '@sparticuz/chromium';
 
 export async function fetchRatingData(user1, user2) {
   try {
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await chromium.puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
 
     await page.goto(`https://atcoder.jp/users/${user1}?graph=rating`, {

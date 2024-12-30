@@ -12,6 +12,7 @@
   "type": "module",
   "description": "",
   "dependencies": {
+    "@sparticuz/chromium": "^131.0.1",
     "chrome-launcher": "^1.1.2",
     "chrome-remote-interface": "^0.33.2",
     "express": "^4.21.2",
