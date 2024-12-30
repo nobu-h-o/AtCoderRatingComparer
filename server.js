@@ -1,5 +1,5 @@
 import express from 'express';
-import { fetchRatingData } from './datacall.js';
+import { fetchRatingData } from './api/datacall.js';
 
 const app = express();
 
