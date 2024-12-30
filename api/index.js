@@ -3,7 +3,6 @@ import { fetchRatingData } from './datacall.js';
 
 const app = express();
 
-// Serve all static files from the current directory (so index.html, index.js, etc.)
 app.use(express.static('./'));
 
 // This is the new endpoint to handle rating data requests
@@ -25,5 +24,5 @@ app.get('/rating-data', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log('Server is running on port 3000');
+  console.log(`Server is running on port ${PORT}`);
 });
