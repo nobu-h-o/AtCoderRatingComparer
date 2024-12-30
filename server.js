@@ -3,7 +3,7 @@ import { fetchRatingData } from './api/datacall.js';
 
 const app = express();
 
-app.use(express.static('./'));
+app.use(express.static('./frontend'));
 // This is the new endpoint to handle rating data requests
 app.get('/rating-data', async (req, res) => {
   const user1 = req.query.user1 || 'Tourist';  // fallback
