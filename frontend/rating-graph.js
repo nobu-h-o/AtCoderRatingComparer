@@ -54,14 +54,9 @@ var n1, n2;
 function initStage(stage, canvas) {
     var width = canvas.getAttribute('width');
     var height = canvas.getAttribute('height');
-    if (window.devicePixelRatio) {
-        canvas.setAttribute('width', Math.round(width * window.devicePixelRatio));
-        canvas.setAttribute('height', Math.round(height * window.devicePixelRatio));
-        stage.scaleX = stage.scaleY = window.devicePixelRatio;
-    }
-    canvas.style.maxWidth = width + "px";
-    canvas.style.maxHeight = height + "px";
-    canvas.style.width = canvas.style.height = "100%";
+
+    canvas.width = width;
+    canvas.height = height;
     stage.enableMouseOver();
 }
 function newShape(parent) {
