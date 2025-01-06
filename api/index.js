@@ -1,13 +1,13 @@
 import express from 'express';
-import { fetchRatingData } from './api/datacall.js';
+import { fetchRatingData } from './datacall.js';
 
 const app = express();
 
 app.use(express.static('./frontend'));
-// This is the new endpoint to handle rating data requests
+// New endpoint to handle rating data requests
 app.get('/rating-data', async (req, res) => {
-  const user1 = req.query.user1 || 'Tourist';  // fallback
-  const user2 = req.query.user2 || 'Chokudai'; // fallback
+  const user1 = req.query.user1
+  const user2 = req.query.user2
 
   // 1) Use Puppeteer to scrape the data
   const { rating_history1, rating_history2 } = await fetchRatingData(user1, user2);

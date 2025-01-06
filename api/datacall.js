@@ -1,6 +1,4 @@
-// datacall.js
 import puppeteer from 'puppeteer';
-import dotenv from 'dotenv';
 
 export async function fetchRatingData(user1, user2) {
   try {
@@ -14,14 +12,14 @@ export async function fetchRatingData(user1, user2) {
         process.env.NODE_ENV === 'production'
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
-      headless: true
+      headless: "new"
     });
     const page = await browser.newPage();
-
+    // headless browser visits website
     await page.goto(`https://atcoder.jp/users/${user1}?graph=rating`, {
       waitUntil: 'networkidle0'
     });
-
+    // headless browser retrieves the data of the graph through xpath
     const rating_history1 = await page.evaluate(() => {
       const xpath = '//*[@id="main-container"]/div[1]/div[3]/div/script[2]/text()';
       const result = document.evaluate(xpath, document, null, XPathResult.STRING_TYPE, null);
@@ -34,7 +32,7 @@ export async function fetchRatingData(user1, user2) {
       }
       return null;
     });
-
+    // same thing for user2
     await page.goto(`https://atcoder.jp/users/${user2}?graph=rating`, {
       waitUntil: 'networkidle0'
     });
@@ -51,17 +49,17 @@ export async function fetchRatingData(user1, user2) {
       }
       return null;
     });
-
+    //closes browser after retrieving wanted data
     await browser.close();
 
-    // Important: return the scraped data
+    // returns the retrieved data
     return {
       rating_history1: rating_history1 || [],
       rating_history2: rating_history2 || []
     };
   } catch (error) {
     console.error('An error occurred:', error);
-    // Return empty arrays on error
+    // return empty arrays on error
     return { rating_history1: [], rating_history2: [] };
   }
 }
