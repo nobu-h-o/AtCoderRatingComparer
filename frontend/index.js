@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', async () => {
         try {
             loadingOverlay.style.display = 'flex';
-            button.disabled = true; // Optional: Disable the button
+            button.disabled = true;
 
             // 1) Read the usernames from the input fields
             const user1 = document.getElementById('user1').value.trim();
